@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx.knobs;
+package org.lluvia.lluviafx.knobs;
 
 import android.content.Context;
-import org.lineageos.audiofx.Constants;
-import org.lineageos.audiofx.activity.MasterConfigControl;
-import org.lineageos.audiofx.service.AudioFxService;
+import org.lluvia.lluviafx.Constants;
+import org.lluvia.lluviafx.activity.MasterConfigControl;
+import org.lluvia.lluviafx.service.LLuviaFXService;
 
 public class KnobCommander {
 
@@ -89,60 +89,60 @@ public class KnobCommander {
     }
 
     public boolean isBassEffectEnabled() {
-        return mConfig.getPrefs().getBoolean(Constants.DEVICE_AUDIOFX_BASS_ENABLE, false);
+        return mConfig.getPrefs().getBoolean(Constants.DEVICE_LLUVIAFX_BASS_ENABLE, false);
     }
 
     public boolean isTrebleEffectEnabled() {
-        return mConfig.getPrefs().getBoolean(Constants.DEVICE_AUDIOFX_TREBLE_ENABLE, false);
+        return mConfig.getPrefs().getBoolean(Constants.DEVICE_LLUVIAFX_TREBLE_ENABLE, false);
     }
 
     public boolean isVirtualizerEffectEnabled() {
-        return mConfig.getPrefs().getBoolean(Constants.DEVICE_AUDIOFX_VIRTUALIZER_ENABLE, false);
+        return mConfig.getPrefs().getBoolean(Constants.DEVICE_LLUVIAFX_VIRTUALIZER_ENABLE, false);
     }
 
     public int getVirtualizerStrength() {
-        return Integer.valueOf(mConfig.getPrefs().getString(Constants.DEVICE_AUDIOFX_VIRTUALIZER_STRENGTH, "0")) / 10;
+        return Integer.valueOf(mConfig.getPrefs().getString(Constants.DEVICE_LLUVIAFX_VIRTUALIZER_STRENGTH, "0")) / 10;
     }
 
     public int getBassStrength() {
-        return Integer.valueOf(mConfig.getPrefs().getString(Constants.DEVICE_AUDIOFX_BASS_STRENGTH, "0")) / 10;
+        return Integer.valueOf(mConfig.getPrefs().getString(Constants.DEVICE_LLUVIAFX_BASS_STRENGTH, "0")) / 10;
     }
 
     public int getTrebleStrength() {
-        return Integer.valueOf(mConfig.getPrefs().getString(Constants.DEVICE_AUDIOFX_TREBLE_STRENGTH, "0"));
+        return Integer.valueOf(mConfig.getPrefs().getString(Constants.DEVICE_LLUVIAFX_TREBLE_STRENGTH, "0"));
     }
 
     public void setTrebleEnabled(boolean on) {
-        mConfig.getPrefs().edit().putBoolean(Constants.DEVICE_AUDIOFX_TREBLE_ENABLE, on).apply();
-        mConfig.updateService(AudioFxService.TREBLE_BOOST_CHANGED);
+        mConfig.getPrefs().edit().putBoolean(Constants.DEVICE_LLUVIAFX_TREBLE_ENABLE, on).apply();
+        mConfig.updateService(LLuviaFXService.TREBLE_BOOST_CHANGED);
     }
 
     public void setTrebleStrength(int value) {
         // set parameter and state
-        mConfig.getPrefs().edit().putString(Constants.DEVICE_AUDIOFX_TREBLE_STRENGTH, String.valueOf(value)).apply();
-        mConfig.updateService(AudioFxService.TREBLE_BOOST_CHANGED);
+        mConfig.getPrefs().edit().putString(Constants.DEVICE_LLUVIAFX_TREBLE_STRENGTH, String.valueOf(value)).apply();
+        mConfig.updateService(LLuviaFXService.TREBLE_BOOST_CHANGED);
     }
 
     public void setBassEnabled(boolean on) {
-        mConfig.getPrefs().edit().putBoolean(Constants.DEVICE_AUDIOFX_BASS_ENABLE, on).apply();
-        mConfig.updateService(AudioFxService.BASS_BOOST_CHANGED);
+        mConfig.getPrefs().edit().putBoolean(Constants.DEVICE_LLUVIAFX_BASS_ENABLE, on).apply();
+        mConfig.updateService(LLuviaFXService.BASS_BOOST_CHANGED);
     }
 
     public void setBassStrength(int value) {
         // set parameter and state
-        mConfig.getPrefs().edit().putString(Constants.DEVICE_AUDIOFX_BASS_STRENGTH, String.valueOf(value * 10)).apply();
-        mConfig.updateService(AudioFxService.BASS_BOOST_CHANGED);
+        mConfig.getPrefs().edit().putString(Constants.DEVICE_LLUVIAFX_BASS_STRENGTH, String.valueOf(value * 10)).apply();
+        mConfig.updateService(LLuviaFXService.BASS_BOOST_CHANGED);
     }
 
     public void setVirtualizerEnabled(boolean on) {
-        mConfig.getPrefs().edit().putBoolean(Constants.DEVICE_AUDIOFX_VIRTUALIZER_ENABLE, on).apply();
-        mConfig.updateService(AudioFxService.VIRTUALIZER_CHANGED);
+        mConfig.getPrefs().edit().putBoolean(Constants.DEVICE_LLUVIAFX_VIRTUALIZER_ENABLE, on).apply();
+        mConfig.updateService(LLuviaFXService.VIRTUALIZER_CHANGED);
     }
 
     public void setVirtualiserStrength(int value) {
         // set parameter and state
-        mConfig.getPrefs().edit().putString(Constants.DEVICE_AUDIOFX_VIRTUALIZER_STRENGTH, String.valueOf(value * 10)).apply();
-        mConfig.updateService(AudioFxService.VIRTUALIZER_CHANGED);
+        mConfig.getPrefs().edit().putString(Constants.DEVICE_LLUVIAFX_VIRTUALIZER_STRENGTH, String.valueOf(value * 10)).apply();
+        mConfig.updateService(LLuviaFXService.VIRTUALIZER_CHANGED);
     }
 
     private RadialKnob.OnKnobChangeListener mTrebleKnobCallback = new RadialKnob.OnKnobChangeListener() {

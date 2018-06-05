@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx.backends;
+package org.lluvia.lluviafx.backends;
 
 import android.media.AudioDeviceInfo;
-import android.media.audiofx.Equalizer;
+import android.media.lluviafx.Equalizer;
 import android.util.Log;
 
-import org.lineageos.audiofx.eq.EqUtils;
+import org.lluvia.lluviafx.eq.EqUtils;
 
 public abstract class EffectSetWithAndroidEq extends EffectSet {
     /**

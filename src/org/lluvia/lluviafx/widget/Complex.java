@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx.widget;
+package org.lluvia.lluviafx.widget;
 
 /**
  * Java support for complex numbers.

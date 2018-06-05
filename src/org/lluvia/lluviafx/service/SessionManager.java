@@ -13,50 +13,50 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx.service;
+package org.lluvia.lluviafx.service;
 
-import static org.lineageos.audiofx.Constants.DEVICE_AUDIOFX_BASS_ENABLE;
-import static org.lineageos.audiofx.Constants.DEVICE_AUDIOFX_BASS_STRENGTH;
-import static org.lineageos.audiofx.Constants.DEVICE_AUDIOFX_EQ_PRESET_LEVELS;
-import static org.lineageos.audiofx.Constants.DEVICE_AUDIOFX_GLOBAL_ENABLE;
-import static org.lineageos.audiofx.Constants.DEVICE_AUDIOFX_MAXXVOLUME_ENABLE;
-import static org.lineageos.audiofx.Constants.DEVICE_AUDIOFX_REVERB_PRESET;
-import static org.lineageos.audiofx.Constants.DEVICE_AUDIOFX_TREBLE_ENABLE;
-import static org.lineageos.audiofx.Constants.DEVICE_AUDIOFX_TREBLE_STRENGTH;
-import static org.lineageos.audiofx.Constants.DEVICE_AUDIOFX_VIRTUALIZER_ENABLE;
-import static org.lineageos.audiofx.Constants.DEVICE_AUDIOFX_VIRTUALIZER_STRENGTH;
-import static org.lineageos.audiofx.Constants.DEVICE_DEFAULT_GLOBAL_ENABLE;
-import static org.lineageos.audiofx.activity.MasterConfigControl.getDeviceIdentifierString;
-import static org.lineageos.audiofx.service.AudioFxService.ALL_CHANGED;
-import static org.lineageos.audiofx.service.AudioFxService.BASS_BOOST_CHANGED;
-import static org.lineageos.audiofx.service.AudioFxService.EQ_CHANGED;
-import static org.lineageos.audiofx.service.AudioFxService.REVERB_CHANGED;
-import static org.lineageos.audiofx.service.AudioFxService.TREBLE_BOOST_CHANGED;
-import static org.lineageos.audiofx.service.AudioFxService.VIRTUALIZER_CHANGED;
-import static org.lineageos.audiofx.service.AudioFxService.VOLUME_BOOST_CHANGED;
+import static org.lluvia.lluviafx.Constants.DEVICE_LLuviaFX_BASS_ENABLE;
+import static org.lluvia.lluviafx.Constants.DEVICE_LLuviaFX_BASS_STRENGTH;
+import static org.lluvia.lluviafx.Constants.DEVICE_LLuviaFX_EQ_PRESET_LEVELS;
+import static org.lluvia.lluviafx.Constants.DEVICE_LLuviaFX_GLOBAL_ENABLE;
+import static org.lluvia.lluviafx.Constants.DEVICE_LLuviaFX_MAXXVOLUME_ENABLE;
+import static org.lluvia.lluviafx.Constants.DEVICE_LLuviaFX_REVERB_PRESET;
+import static org.lluvia.lluviafx.Constants.DEVICE_LLuviaFX_TREBLE_ENABLE;
+import static org.lluvia.lluviafx.Constants.DEVICE_LLuviaFX_TREBLE_STRENGTH;
+import static org.lluvia.lluviafx.Constants.DEVICE_LLuviaFX_VIRTUALIZER_ENABLE;
+import static org.lluvia.lluviafx.Constants.DEVICE_LLuviaFX_VIRTUALIZER_STRENGTH;
+import static org.lluvia.lluviafx.Constants.DEVICE_DEFAULT_GLOBAL_ENABLE;
+import static org.lluvia.lluviafx.activity.MasterConfigControl.getDeviceIdentifierString;
+import static org.lluvia.lluviafx.service.LLuviaFXService.ALL_CHANGED;
+import static org.lluvia.lluviafx.service.LLuviaFXService.BASS_BOOST_CHANGED;
+import static org.lluvia.lluviafx.service.LLuviaFXService.EQ_CHANGED;
+import static org.lluvia.lluviafx.service.LLuviaFXService.REVERB_CHANGED;
+import static org.lluvia.lluviafx.service.LLuviaFXService.TREBLE_BOOST_CHANGED;
+import static org.lluvia.lluviafx.service.LLuviaFXService.VIRTUALIZER_CHANGED;
+import static org.lluvia.lluviafx.service.LLuviaFXService.VOLUME_BOOST_CHANGED;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.media.AudioSystem;
-import android.media.audiofx.PresetReverb;
+import android.media.lluviafx.PresetReverb;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.util.SparseArray;
 
-import org.lineageos.audiofx.backends.EffectSet;
-import org.lineageos.audiofx.backends.EffectsFactory;
-import org.lineageos.audiofx.eq.EqUtils;
+import org.lluvia.lluviafx.backends.EffectSet;
+import org.lluvia.lluviafx.backends.EffectsFactory;
+import org.lluvia.lluviafx.eq.EqUtils;
 
 import lineageos.media.AudioSessionInfo;
 import lineageos.media.LineageAudioManager;
 
 class SessionManager implements AudioOutputChangeListener.AudioOutputChangedCallback {
 
-    private static final String TAG = AudioFxService.TAG;
+    private static final String TAG = LLuviaFXService.TAG;
     private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
 
     private final Context mContext;
@@ -198,7 +198,7 @@ class SessionManager implements AudioOutputChangeListener.AudioOutputChangedCall
             return;
         }
 
-        final boolean globalEnabled = prefs.getBoolean(DEVICE_AUDIOFX_GLOBAL_ENABLE,
+        final boolean globalEnabled = prefs.getBoolean(DEVICE_LLUVIAFX_GLOBAL_ENABLE,
                 DEVICE_DEFAULT_GLOBAL_ENABLE);
 
         if ((flags & ALL_CHANGED) > 0) {
@@ -218,7 +218,7 @@ class SessionManager implements AudioOutputChangeListener.AudioOutputChangedCall
                 if ((flags & EQ_CHANGED) > 0) {
                     // equalizer is always on unless bypassed
                     session.enableEqualizer(true);
-                    String savedPreset = prefs.getString(DEVICE_AUDIOFX_EQ_PRESET_LEVELS, null);
+                    String savedPreset = prefs.getString(DEVICE_LLUVIAFX_EQ_PRESET_LEVELS, null);
                     if (savedPreset != null) {
                         session.setEqualizerLevelsDecibels(EqUtils.stringBandsToFloats(savedPreset));
                     }
@@ -230,10 +230,10 @@ class SessionManager implements AudioOutputChangeListener.AudioOutputChangedCall
             // bass
             try {
                 if ((flags & BASS_BOOST_CHANGED) > 0 && session.hasBassBoost()) {
-                    boolean enable = prefs.getBoolean(DEVICE_AUDIOFX_BASS_ENABLE, false);
+                    boolean enable = prefs.getBoolean(DEVICE_LLUVIAFX_BASS_ENABLE, false);
                     session.enableBassBoost(enable);
                     session.setBassBoostStrength(Short.valueOf(prefs
-                            .getString(DEVICE_AUDIOFX_BASS_STRENGTH, "0")));
+                            .getString(DEVICE_LLUVIAFX_BASS_STRENGTH, "0")));
                 }
             } catch (Exception e) {
                 Log.e(TAG, "Error enabling bass boost!", e);
@@ -242,7 +242,7 @@ class SessionManager implements AudioOutputChangeListener.AudioOutputChangedCall
             // reverb
             try {
                 if ((flags & REVERB_CHANGED) > 0 && session.hasReverb()) {
-                    short preset = Short.decode(prefs.getString(DEVICE_AUDIOFX_REVERB_PRESET,
+                    short preset = Short.decode(prefs.getString(DEVICE_LLUVIAFX_REVERB_PRESET,
                             String.valueOf(PresetReverb.PRESET_NONE)));
                     session.enableReverb(preset > 0);
                     session.setReverbPreset(preset);
@@ -254,10 +254,10 @@ class SessionManager implements AudioOutputChangeListener.AudioOutputChangedCall
             // virtualizer
             try {
                 if ((flags & VIRTUALIZER_CHANGED) > 0 && session.hasVirtualizer()) {
-                    boolean enable = prefs.getBoolean(DEVICE_AUDIOFX_VIRTUALIZER_ENABLE, false);
+                    boolean enable = prefs.getBoolean(DEVICE_LLUVIAFX_VIRTUALIZER_ENABLE, false);
                     session.enableVirtualizer(enable);
                     session.setVirtualizerStrength(Short.valueOf(prefs.getString(
-                            DEVICE_AUDIOFX_VIRTUALIZER_STRENGTH, "0")));
+                            DEVICE_LLUVIAFX_VIRTUALIZER_STRENGTH, "0")));
                 }
             } catch (Exception e) {
                 Log.e(TAG, "Error enabling virtualizer!");
@@ -267,10 +267,10 @@ class SessionManager implements AudioOutputChangeListener.AudioOutputChangedCall
             try {
                 if ((flags & TREBLE_BOOST_CHANGED) > 0 && session.hasTrebleBoost()) {
                     // treble
-                    boolean enable = prefs.getBoolean(DEVICE_AUDIOFX_TREBLE_ENABLE, false);
+                    boolean enable = prefs.getBoolean(DEVICE_LLUVIAFX_TREBLE_ENABLE, false);
                     session.enableTrebleBoost(enable);
                     session.setTrebleBoostStrength(Short.valueOf(
-                            prefs.getString(DEVICE_AUDIOFX_TREBLE_STRENGTH, "0")));
+                            prefs.getString(DEVICE_LLUVIAFX_TREBLE_STRENGTH, "0")));
                 }
             } catch (Exception e) {
                 Log.e(TAG, "Error enabling treble boost!", e);
@@ -279,7 +279,7 @@ class SessionManager implements AudioOutputChangeListener.AudioOutputChangedCall
             try {
                 if ((flags & VOLUME_BOOST_CHANGED) > 0 && session.hasVolumeBoost()) {
                     // maxx volume
-                    session.enableVolumeBoost(prefs.getBoolean(DEVICE_AUDIOFX_MAXXVOLUME_ENABLE, false));
+                    session.enableVolumeBoost(prefs.getBoolean(DEVICE_LLUVIAFX_MAXXVOLUME_ENABLE, false));
                 }
             } catch (Exception e) {
                 Log.e(TAG, "Error enabling volume boost!", e);

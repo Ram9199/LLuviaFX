@@ -1,20 +1,20 @@
-package org.lineageos.audiofx.service;
+package org.lluvia.lluviafx.service;
 
 import android.content.Intent;
-import android.media.audiofx.AudioEffect;
+import android.media.lluviafx.AudioEffect;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 
 import android.util.Log;
-import org.lineageos.audiofx.util.BaseAudioFxServiceInstrumentationTest;
-import org.lineageos.audiofx.util.TestMediaPlayer;
+import org.lluvia.lluviafx.util.BaseLLuviaFXServiceInstrumentationTest;
+import org.lluvia.lluviafx.util.TestMediaPlayer;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import org.lineageos.audiofx.tests.R;
+import org.lluvia.lluviafx.tests.R;
 
 import static org.junit.Assert.*;
 
@@ -22,9 +22,9 @@ import static org.junit.Assert.*;
  * Created by roman on 3/1/16.
  */
 @RunWith(AndroidJUnit4.class)
-public class AudioFxServiceTests extends BaseAudioFxServiceInstrumentationTest {
+public class LLuviaFXServiceTests extends BaseLLuviaFXServiceInstrumentationTest {
 
-    private static final String TAG = "AudioFxServiceTests";
+    private static final String TAG = "LLuviaFXServiceTests";
 
     private static final int SANE_MAX_LOOP_TIME = 1000 * 20; // 20 seconds !?
     private static final int LOOP_SLEEP_TIME = 25;
@@ -49,7 +49,7 @@ public class AudioFxServiceTests extends BaseAudioFxServiceInstrumentationTest {
     public void testServiceCreatesEffectsDirect() throws Exception {
         setupService(); // this might be reused
 
-        Intent intent = new Intent(getTargetContext(), AudioFxService.class);
+        Intent intent = new Intent(getTargetContext(), LLuviaFXService.class);
         intent.setAction(AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION);
         intent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, mPlayer.getAudioSessionId());
         intent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, getTargetContext().getPackageName());
@@ -63,7 +63,7 @@ public class AudioFxServiceTests extends BaseAudioFxServiceInstrumentationTest {
     public void testServiceDestroysEffectsDirect() throws Exception {
         testServiceCreatesEffectsDirect();
 
-        Intent intent = new Intent(getTargetContext(), AudioFxService.class);
+        Intent intent = new Intent(getTargetContext(), LLuviaFXService.class);
         intent.setAction(AudioEffect.ACTION_CLOSE_AUDIO_EFFECT_CONTROL_SESSION);
         intent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, mPlayer.getAudioSessionId());
         intent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, getTargetContext().getPackageName());

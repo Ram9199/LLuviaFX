@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx.service;
+package org.lluvia.lluviafx.service;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -21,7 +21,7 @@ import android.content.Intent;
 
 public class BootReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
-        final Intent service = new Intent(context.getApplicationContext(), AudioFxService.class);
+        final Intent service = new Intent(context.getApplicationContext(), LLuviaFXService.class);
         context.startService(service);
     }
 }

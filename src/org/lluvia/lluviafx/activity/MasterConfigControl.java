@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx.activity;
+package org.lluvia.lluviafx.activity;
 
 import static android.media.AudioDeviceInfo.TYPE_BLUETOOTH_A2DP;
 import static android.media.AudioDeviceInfo.TYPE_BLUETOOTH_SCO;
@@ -40,14 +40,14 @@ import android.os.IBinder;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import org.lineageos.audiofx.Constants;
-import org.lineageos.audiofx.service.AudioFxService;
+import org.lluvia.lluviafx.Constants;
+import org.lluvia.lluviafx.service.LLuviaFXService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Master configuration class for AudioFX.
+ * Master configuration class for LLuviaFX.
  *
  * Contains the main hub where data is stored for the current eq graph (which there should be
  * one of, thus only once instance of this class exists).
@@ -64,7 +64,7 @@ public class MasterConfigControl {
 
     private final Context mContext;
 
-    private AudioFxService.LocalBinder mService;
+    private LLuviaFXService.LocalBinder mService;
     private ServiceConnection mServiceConnection;
     private int mServiceRefCount = 0;
 
@@ -106,10 +106,10 @@ public class MasterConfigControl {
                 @Override
                 public void onServiceConnected(ComponentName name, IBinder binder) {
                     if (SERVICE_DEBUG) Log.i(TAG, "onServiceConnected refCount=" + mServiceRefCount);
-                    mService = ((AudioFxService.LocalBinder) binder);
+                    mService = ((LLuviaFXService.LocalBinder) binder);
                     LocalBroadcastManager.getInstance(mContext).registerReceiver(
                             mDeviceChangeReceiver,
-                            new IntentFilter(AudioFxService.ACTION_DEVICE_OUTPUT_CHANGED));
+                            new IntentFilter(LLuviaFXService.ACTION_DEVICE_OUTPUT_CHANGED));
                 }
 
                 @Override
@@ -121,7 +121,7 @@ public class MasterConfigControl {
                 }
             };
 
-            Intent serviceIntent = new Intent(mContext, AudioFxService.class);
+            Intent serviceIntent = new Intent(mContext, LLuviaFXService.class);
             conn =  mContext.bindService(serviceIntent, mServiceConnection,
                     Context.BIND_AUTO_CREATE);
         }
@@ -180,17 +180,17 @@ public class MasterConfigControl {
     }
 
     public synchronized void setCurrentDeviceEnabled(boolean isChecked) {
-        getPrefs().edit().putBoolean(Constants.DEVICE_AUDIOFX_GLOBAL_ENABLE, isChecked).apply();
+        getPrefs().edit().putBoolean(Constants.DEVICE_LLUVIAFX_GLOBAL_ENABLE, isChecked).apply();
         getCallbacks().notifyGlobalToggle(isChecked);
-        updateService(AudioFxService.ALL_CHANGED);
+        updateService(LLuviaFXService.ALL_CHANGED);
     }
 
     public synchronized boolean isCurrentDeviceEnabled() {
-        return getPrefs().getBoolean(Constants.DEVICE_AUDIOFX_GLOBAL_ENABLE, false);
+        return getPrefs().getBoolean(Constants.DEVICE_LLUVIAFX_GLOBAL_ENABLE, false);
     }
 
     public synchronized SharedPreferences getGlobalPrefs() {
-        return mContext.getSharedPreferences(Constants.AUDIOFX_GLOBAL_FILE, 0);
+        return mContext.getSharedPreferences(Constants.LLUVIAFX_GLOBAL_FILE, 0);
     }
 
     /**
@@ -282,41 +282,41 @@ public class MasterConfigControl {
     }
 
     public boolean hasDts() {
-        return getGlobalPrefs().getBoolean(Constants.AUDIOFX_GLOBAL_HAS_DTS, false);
+        return getGlobalPrefs().getBoolean(Constants.LLUVIAFX_GLOBAL_HAS_DTS, false);
     }
 
     public boolean hasMaxxAudio() {
-        return getGlobalPrefs().getBoolean(Constants.AUDIOFX_GLOBAL_HAS_MAXXAUDIO, false);
+        return getGlobalPrefs().getBoolean(Constants.LLUVIAFX_GLOBAL_HAS_MAXXAUDIO, false);
     }
 
     public boolean hasBassBoost() {
-        return getGlobalPrefs().getBoolean(Constants.AUDIOFX_GLOBAL_HAS_BASSBOOST, false);
+        return getGlobalPrefs().getBoolean(Constants.LLUVIAFX_GLOBAL_HAS_BASSBOOST, false);
     }
 
     public boolean hasReverb() {
-        return getGlobalPrefs().getBoolean(Constants.AUDIOFX_GLOBAL_HAS_REVERB, false);
+        return getGlobalPrefs().getBoolean(Constants.LLUVIAFX_GLOBAL_HAS_REVERB, false);
     }
 
     public boolean hasVirtualizer() {
-        return getGlobalPrefs().getBoolean(Constants.AUDIOFX_GLOBAL_HAS_VIRTUALIZER, false);
+        return getGlobalPrefs().getBoolean(Constants.LLUVIAFX_GLOBAL_HAS_VIRTUALIZER, false);
     }
 
     public boolean getMaxxVolumeEnabled() {
-        return getPrefs().getBoolean(Constants.DEVICE_AUDIOFX_MAXXVOLUME_ENABLE, false);
+        return getPrefs().getBoolean(Constants.DEVICE_LLUVIAFX_MAXXVOLUME_ENABLE, false);
     }
 
     public boolean getReverbEnabled() {
-        return getPrefs().getString(Constants.DEVICE_AUDIOFX_REVERB_PRESET, "0").equals("1");
+        return getPrefs().getString(Constants.DEVICE_LLUVIAFX_REVERB_PRESET, "0").equals("1");
     }
 
     public void setMaxxVolumeEnabled(boolean enable) {
-        getPrefs().edit().putBoolean(Constants.DEVICE_AUDIOFX_MAXXVOLUME_ENABLE, enable).apply();
-        updateService(AudioFxService.VOLUME_BOOST_CHANGED);
+        getPrefs().edit().putBoolean(Constants.DEVICE_LLUVIAFX_MAXXVOLUME_ENABLE, enable).apply();
+        updateService(LLUVIAFXService.VOLUME_BOOST_CHANGED);
     }
 
     public void setReverbEnabled(boolean enable) {
-        getPrefs().edit().putString(Constants.DEVICE_AUDIOFX_REVERB_PRESET, enable ? "1" : "0").apply();
-        updateService(AudioFxService.REVERB_CHANGED);
+        getPrefs().edit().putString(Constants.DEVICE_LLUVIAFX_REVERB_PRESET, enable ? "1" : "0").apply();
+        updateService(LLUVIAFXService.REVERB_CHANGED);
     }
 
     void overrideEqLevels(short band, short level) {
@@ -330,10 +330,10 @@ public class MasterConfigControl {
         switch (type) {
             case TYPE_WIRED_HEADSET:
             case TYPE_WIRED_HEADPHONES:
-                return context.getString(org.lineageos.audiofx.R.string.device_headset);
+                return context.getString(org.lluvia.lluviafx.R.string.device_headset);
             case TYPE_LINE_ANALOG:
             case TYPE_LINE_DIGITAL:
-                return context.getString(org.lineageos.audiofx.R.string.device_line_out);
+                return context.getString(org.lluvia.lluviafx.R.string.device_line_out);
             case TYPE_BLUETOOTH_SCO:
             case TYPE_BLUETOOTH_A2DP:
             case TYPE_USB_DEVICE:
@@ -342,7 +342,7 @@ public class MasterConfigControl {
             case TYPE_IP:
                 return info.getProductName().toString();
             default:
-                return context.getString(org.lineageos.audiofx.R.string.device_speaker);
+                return context.getString(org.lluvia.lluviafx.R.string.device_speaker);
         }
     }
 

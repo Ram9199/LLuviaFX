@@ -1,10 +1,10 @@
-package org.lineageos.audiofx.util;
+package org.lluvia.lluviafx.util;
 
 import android.content.Context;
 import android.media.AudioManager;
 import android.util.Log;
 
-import org.lineageos.audiofx.tests.R;
+import org.lluvia.lluviafx.tests.R;
 
 import static junit.framework.Assert.assertNotNull;
 

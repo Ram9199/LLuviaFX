@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.lineageos.audiofx.tests;
+package org.lluvia.lluviafx.tests;
 
 import android.app.ListActivity;
 import android.os.Bundle;

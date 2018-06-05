@@ -13,32 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx.service;
+package org.lluvia.lluviafx.service;
 
-import static org.lineageos.audiofx.Constants.AUDIOFX_GLOBAL_FILE;
-import static org.lineageos.audiofx.Constants.AUDIOFX_GLOBAL_HAS_BASSBOOST;
-import static org.lineageos.audiofx.Constants.AUDIOFX_GLOBAL_HAS_DTS;
-import static org.lineageos.audiofx.Constants.AUDIOFX_GLOBAL_HAS_MAXXAUDIO;
-import static org.lineageos.audiofx.Constants.AUDIOFX_GLOBAL_HAS_REVERB;
-import static org.lineageos.audiofx.Constants.AUDIOFX_GLOBAL_HAS_VIRTUALIZER;
-import static org.lineageos.audiofx.Constants.DEVICE_AUDIOFX_BASS_ENABLE;
-import static org.lineageos.audiofx.Constants.DEVICE_AUDIOFX_BASS_STRENGTH;
-import static org.lineageos.audiofx.Constants.DEVICE_AUDIOFX_EQ_PRESET;
-import static org.lineageos.audiofx.Constants.DEVICE_AUDIOFX_GLOBAL_ENABLE;
-import static org.lineageos.audiofx.Constants.DEVICE_AUDIOFX_MAXXVOLUME_ENABLE;
-import static org.lineageos.audiofx.Constants.DEVICE_AUDIOFX_TREBLE_ENABLE;
-import static org.lineageos.audiofx.Constants.DEVICE_AUDIOFX_TREBLE_STRENGTH;
-import static org.lineageos.audiofx.Constants.DEVICE_AUDIOFX_VIRTUALIZER_ENABLE;
-import static org.lineageos.audiofx.Constants.DEVICE_AUDIOFX_VIRTUALIZER_STRENGTH;
-import static org.lineageos.audiofx.Constants.DEVICE_HEADSET;
-import static org.lineageos.audiofx.Constants.DEVICE_SPEAKER;
-import static org.lineageos.audiofx.Constants.EQUALIZER_BAND_LEVEL_RANGE;
-import static org.lineageos.audiofx.Constants.EQUALIZER_CENTER_FREQS;
-import static org.lineageos.audiofx.Constants.EQUALIZER_NUMBER_OF_BANDS;
-import static org.lineageos.audiofx.Constants.EQUALIZER_NUMBER_OF_PRESETS;
-import static org.lineageos.audiofx.Constants.EQUALIZER_PRESET;
-import static org.lineageos.audiofx.Constants.EQUALIZER_PRESET_NAMES;
-import static org.lineageos.audiofx.Constants.SAVED_DEFAULTS;
+import static org.lluvia.lluviafx.Constants.LLUVIAFX_GLOBAL_FILE;
+import static org.lluvia.lluviafx.Constants.LLUVIAFX_GLOBAL_HAS_BASSBOOST;
+import static org.lluvia.lluviafx.Constants.LLUVIAFX_GLOBAL_HAS_DTS;
+import static org.lluvia.lluviafx.Constants.LLUVIAFX_GLOBAL_HAS_MAXXAUDIO;
+import static org.lluvia.lluviafx.Constants.LLUVIAFX_GLOBAL_HAS_REVERB;
+import static org.lluvia.lluviafx.Constants.LLUVIAFX_GLOBAL_HAS_VIRTUALIZER;
+import static org.lluvia.lluviafx.Constants.DEVICE_LLUVIAFX_BASS_ENABLE;
+import static org.lluvia.lluviafx.Constants.DEVICE_LLUVIAFX_BASS_STRENGTH;
+import static org.lluvia.lluviafx.Constants.DEVICE_LLUVIAFX_EQ_PRESET;
+import static org.lluvia.lluviafx.Constants.DEVICE_LLUVIAFX_GLOBAL_ENABLE;
+import static org.lluvia.lluviafx.Constants.DEVICE_LLUVIAFX_MAXXVOLUME_ENABLE;
+import static org.lluvia.lluviafx.Constants.DEVICE_LLUVIAFX_TREBLE_ENABLE;
+import static org.lluvia.lluviafx.Constants.DEVICE_LLUVIAFX_TREBLE_STRENGTH;
+import static org.lluvia.lluviafx.Constants.DEVICE_LLUVIAFX_VIRTUALIZER_ENABLE;
+import static org.lluvia.lluviafx.Constants.DEVICE_LLUVIAFX_VIRTUALIZER_STRENGTH;
+import static org.lluvia.lluviafx.Constants.DEVICE_HEADSET;
+import static org.lluvia.lluviafx.Constants.DEVICE_SPEAKER;
+import static org.lluvia.lluviafx.Constants.EQUALIZER_BAND_LEVEL_RANGE;
+import static org.lluvia.lluviafx.Constants.EQUALIZER_CENTER_FREQS;
+import static org.lluvia.lluviafx.Constants.EQUALIZER_NUMBER_OF_BANDS;
+import static org.lluvia.lluviafx.Constants.EQUALIZER_NUMBER_OF_PRESETS;
+import static org.lluvia.lluviafx.Constants.EQUALIZER_PRESET;
+import static org.lluvia.lluviafx.Constants.EQUALIZER_PRESET_NAMES;
+import static org.lluvia.lluviafx.Constants.SAVED_DEFAULTS;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -47,11 +47,11 @@ import android.media.AudioDeviceInfo;
 import android.text.TextUtils;
 import android.util.Log;
 
-import org.lineageos.audiofx.Constants;
-import org.lineageos.audiofx.R;
-import org.lineageos.audiofx.activity.MasterConfigControl;
-import org.lineageos.audiofx.backends.EffectSet;
-import org.lineageos.audiofx.backends.EffectsFactory;
+import org.lluvia.lluviafx.Constants;
+import org.lluvia.lluviafx.R;
+import org.lluvia.lluviafx.activity.MasterConfigControl;
+import org.lluvia.lluviafx.backends.EffectSet;
+import org.lluvia.lluviafx.backends.EffectsFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,7 +64,7 @@ public class DevicePreferenceManager
     // Current pref version, bump to rebuild prefs
     public static final int CURRENT_PREFS_INT_VERSION = 4;
 
-    private static final String TAG = AudioFxService.TAG;
+    private static final String TAG = LLuviaFXService.TAG;
     private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
 
     private final Context mContext;
@@ -107,7 +107,7 @@ public class DevicePreferenceManager
     }
 
     public boolean isGlobalEnabled() {
-        return getCurrentDevicePrefs().getBoolean(DEVICE_AUDIOFX_GLOBAL_ENABLE, false);
+        return getCurrentDevicePrefs().getBoolean(DEVICE_LLUVIAFX_GLOBAL_ENABLE, false);
     }
 
     /**
@@ -123,7 +123,7 @@ public class DevicePreferenceManager
         }
         SharedPreferences prefs = Constants.getGlobalPrefs(mContext);
 
-        final int currentPrefVer = prefs.getInt(Constants.AUDIOFX_GLOBAL_PREFS_VERSION_INT, 0);
+        final int currentPrefVer = prefs.getInt(Constants.LLUVIAFX_GLOBAL_PREFS_VERSION_INT, 0);
         boolean needsPrefsUpdate = currentPrefVer < CURRENT_PREFS_INT_VERSION
                 || overridePrevious;
 
@@ -153,7 +153,7 @@ public class DevicePreferenceManager
 
         // center freqs
         StringBuilder centerFreqs = new StringBuilder();
-        // audiofx.global.centerfreqs
+        // lluviafx.global.centerfreqs
         for (short i = 0; i < numBands; i++) {
             centerFreqs.append(temp.getCenterFrequency(i));
             centerFreqs.append(";");
@@ -186,11 +186,11 @@ public class DevicePreferenceManager
         }
         editor.putString(EQUALIZER_PRESET_NAMES, presetNames.toString());
 
-        editor.putBoolean(AUDIOFX_GLOBAL_HAS_VIRTUALIZER, temp.hasVirtualizer());
-        editor.putBoolean(AUDIOFX_GLOBAL_HAS_REVERB, temp.hasReverb());
-        editor.putBoolean(AUDIOFX_GLOBAL_HAS_BASSBOOST, temp.hasBassBoost());
-        editor.putBoolean(AUDIOFX_GLOBAL_HAS_MAXXAUDIO, temp.getBrand() == Constants.EFFECT_TYPE_MAXXAUDIO);
-        editor.putBoolean(AUDIOFX_GLOBAL_HAS_DTS, temp.getBrand() == Constants.EFFECT_TYPE_DTS);
+        editor.putBoolean(LLUVIAFX_GLOBAL_HAS_VIRTUALIZER, temp.hasVirtualizer());
+        editor.putBoolean(LLUVIAFX_GLOBAL_HAS_REVERB, temp.hasReverb());
+        editor.putBoolean(LLUVIAFX_GLOBAL_HAS_BASSBOOST, temp.hasBassBoost());
+        editor.putBoolean(LLUVIAFX_GLOBAL_HAS_MAXXAUDIO, temp.getBrand() == Constants.EFFECT_TYPE_MAXXAUDIO);
+        editor.putBoolean(LLUVIAFX_GLOBAL_HAS_DTS, temp.getBrand() == Constants.EFFECT_TYPE_DTS);
         editor.commit();
         temp.release();
 
@@ -198,7 +198,7 @@ public class DevicePreferenceManager
 
         prefs
                 .edit()
-                .putInt(Constants.AUDIOFX_GLOBAL_PREFS_VERSION_INT,
+                .putInt(Constants.LLUVIAFX_GLOBAL_PREFS_VERSION_INT,
                             CURRENT_PREFS_INT_VERSION)
                 .putBoolean(Constants.SAVED_DEFAULTS, true)
                 .commit();
@@ -223,14 +223,14 @@ public class DevicePreferenceManager
         }
 
         if (!(overridePrevious || !hasPrefs(DEVICE_SPEAKER) ||
-                !hasPrefs(AUDIOFX_GLOBAL_FILE))) {
+                !hasPrefs(LLUVIAFX_GLOBAL_FILE))) {
             return;
         }
 
         final SharedPreferences globalPrefs = Constants.getGlobalPrefs(mContext);
 
         // Nothing to see here for EFFECT_TYPE_DTS
-        if (globalPrefs.getBoolean(AUDIOFX_GLOBAL_HAS_DTS, false)) {
+        if (globalPrefs.getBoolean(LLUVIAFX_GLOBAL_HAS_DTS, false)) {
             return;
         }
 
@@ -240,46 +240,46 @@ public class DevicePreferenceManager
                 globalPrefs.getString(EQUALIZER_PRESET_NAMES, "").split("\\|")));
         final SharedPreferences speakerPrefs = prefsFor(DEVICE_SPEAKER);
 
-        if (globalPrefs.getBoolean(AUDIOFX_GLOBAL_HAS_MAXXAUDIO, false)) {
+        if (globalPrefs.getBoolean(LLUVIAFX_GLOBAL_HAS_MAXXAUDIO, false)) {
             // MaxxAudio defaults for builtin speaker:
             // maxxvolume: on  maxxbass: 40%  maxxtreble: 32%
             speakerPrefs.edit()
-                    .putBoolean(DEVICE_AUDIOFX_GLOBAL_ENABLE, true)
-                    .putBoolean(DEVICE_AUDIOFX_MAXXVOLUME_ENABLE, true)
-                    .putBoolean(DEVICE_AUDIOFX_BASS_ENABLE, true)
-                    .putString(DEVICE_AUDIOFX_BASS_STRENGTH, "400")
-                    .putBoolean(DEVICE_AUDIOFX_TREBLE_ENABLE, true)
-                    .putString(DEVICE_AUDIOFX_TREBLE_STRENGTH, "32")
+                    .putBoolean(DEVICE_LLUVIAFX_GLOBAL_ENABLE, true)
+                    .putBoolean(DEVICE_LLUVIAFX_MAXXVOLUME_ENABLE, true)
+                    .putBoolean(DEVICE_LLUVIAFX_BASS_ENABLE, true)
+                    .putString(DEVICE_LLUVIAFX_BASS_STRENGTH, "400")
+                    .putBoolean(DEVICE_LLUVIAFX_TREBLE_ENABLE, true)
+                    .putString(DEVICE_LLUVIAFX_TREBLE_STRENGTH, "32")
                     .commit();
 
             // Defaults for headphones
             // maxxvolume: on  maxxbass: 20%  maxxtreble: 40%  maxxspace: 20%
             prefsFor(DEVICE_HEADSET).edit()
-                    .putBoolean(DEVICE_AUDIOFX_GLOBAL_ENABLE, true)
-                    .putBoolean(DEVICE_AUDIOFX_MAXXVOLUME_ENABLE, true)
-                    .putBoolean(DEVICE_AUDIOFX_BASS_ENABLE, true)
-                    .putString(DEVICE_AUDIOFX_BASS_STRENGTH, "200")
-                    .putBoolean(DEVICE_AUDIOFX_TREBLE_ENABLE, true)
-                    .putString(DEVICE_AUDIOFX_TREBLE_STRENGTH, "40")
-                    .putBoolean(DEVICE_AUDIOFX_VIRTUALIZER_ENABLE, true)
-                    .putString(DEVICE_AUDIOFX_VIRTUALIZER_STRENGTH, "200")
+                    .putBoolean(DEVICE_LLUVIAFX_GLOBAL_ENABLE, true)
+                    .putBoolean(DEVICE_LLUVIAFX_MAXXVOLUME_ENABLE, true)
+                    .putBoolean(DEVICE_LLUVIAFX_BASS_ENABLE, true)
+                    .putString(DEVICE_LLUVIAFX_BASS_STRENGTH, "200")
+                    .putBoolean(DEVICE_LLUVIAFX_TREBLE_ENABLE, true)
+                    .putString(DEVICE_LLUVIAFX_TREBLE_STRENGTH, "40")
+                    .putBoolean(DEVICE_LLUVIAFX_VIRTUALIZER_ENABLE, true)
+                    .putString(DEVICE_LLUVIAFX_VIRTUALIZER_STRENGTH, "200")
                     .commit();
         } else {
             // Defaults for headphones
             // bass boost: 15%  virtualizer: 20%  preset: FLAT
             int flat = findInList(getNonLocalizedString(R.string.flat), presetNames);
             prefsFor(DEVICE_HEADSET).edit()
-                    .putBoolean(DEVICE_AUDIOFX_GLOBAL_ENABLE, true)
-                    .putBoolean(DEVICE_AUDIOFX_BASS_ENABLE, true)
-                    .putString(DEVICE_AUDIOFX_BASS_STRENGTH, "150")
-                    .putBoolean(DEVICE_AUDIOFX_VIRTUALIZER_ENABLE, true)
-                    .putString(DEVICE_AUDIOFX_VIRTUALIZER_STRENGTH, "200")
-                    .putString(DEVICE_AUDIOFX_EQ_PRESET, (flat >= 0 ? String.valueOf(flat) : "0"))
+                    .putBoolean(DEVICE_LLUVIAFX_GLOBAL_ENABLE, true)
+                    .putBoolean(DEVICE_LLUVIAFX_BASS_ENABLE, true)
+                    .putString(DEVICE_LLUVIAFX_BASS_STRENGTH, "150")
+                    .putBoolean(DEVICE_LLUVIAFX_VIRTUALIZER_ENABLE, true)
+                    .putString(DEVICE_LLUVIAFX_VIRTUALIZER_STRENGTH, "200")
+                    .putString(DEVICE_LLUVIAFX_EQ_PRESET, (flat >= 0 ? String.valueOf(flat) : "0"))
                     .commit();
         }
 
         // for 5 band configs, let's add a `Small Speaker` configuration if one
-        // doesn't exist ( from oss AudioFX: -170;270;50;-220;200 )
+        // doesn't exist ( from oss LLuviaFX: -170;270;50;-220;200 )
         if (Integer.parseInt(globalPrefs.getString(EQUALIZER_NUMBER_OF_BANDS, "0")) == 5 &&
                 findInList(smallSpeakers, presetNames) < 0) {
 
@@ -300,8 +300,8 @@ public class DevicePreferenceManager
         int idx = findInList(smallSpeakers, presetNames);
         if (idx >= 0) {
             speakerPrefs.edit()
-                .putBoolean(DEVICE_AUDIOFX_GLOBAL_ENABLE, true)
-                .putString(DEVICE_AUDIOFX_EQ_PRESET, String.valueOf(idx))
+                .putBoolean(DEVICE_LLUVIAFX_GLOBAL_ENABLE, true)
+                .putString(DEVICE_LLUVIAFX_EQ_PRESET, String.valueOf(idx))
                 .commit();
         }
     }

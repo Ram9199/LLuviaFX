@@ -1,4 +1,4 @@
-package org.lineageos.audiofx.tests;
+package org.lluvia.lluviafx.tests;
 
 import android.media.AudioManager;
 import android.media.AudioSystem;
@@ -6,7 +6,7 @@ import android.media.RingtoneManager;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import org.lineageos.audiofx.util.TestDuckingMediaPlayer;
+import org.lluvia.lluviafx.util.TestDuckingMediaPlayer;
 
 /**
  * Created by roman on 3/8/16.

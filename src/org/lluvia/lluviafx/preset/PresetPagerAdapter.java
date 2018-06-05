@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx.preset;
+package org.lluvia.lluviafx.preset;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
@@ -22,10 +22,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.lineageos.audiofx.Preset;
-import org.lineageos.audiofx.R;
-import org.lineageos.audiofx.activity.EqualizerManager;
-import org.lineageos.audiofx.activity.MasterConfigControl;
+import org.lluvia.lluviafx.Preset;
+import org.lluvia.lluviafx.R;
+import org.lluvia.lluviafx.activity.EqualizerManager;
+import org.lluvia.lluviafx.activity.MasterConfigControl;
 
 public class PresetPagerAdapter extends PagerAdapter {
 

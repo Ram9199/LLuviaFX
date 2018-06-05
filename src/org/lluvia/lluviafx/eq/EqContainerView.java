@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx.eq;
+package org.lluvia.lluviafx.eq;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -38,10 +38,10 @@ import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import org.lineageos.audiofx.R;
-import org.lineageos.audiofx.activity.EqualizerManager;
-import org.lineageos.audiofx.activity.MasterConfigControl;
-import org.lineageos.audiofx.activity.StateCallbacks;
+import org.lluvia.lluviafx.R;
+import org.lluvia.lluviafx.activity.EqualizerManager;
+import org.lluvia.lluviafx.activity.MasterConfigControl;
+import org.lluvia.lluviafx.activity.StateCallbacks;
 
 import java.util.ArrayList;
 import java.util.List;

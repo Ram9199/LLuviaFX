@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx.receiver;
+package org.lluvia.lluviafx.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.media.audiofx.AudioEffect;
+import android.media.lluviafx.AudioEffect;
 import android.util.Log;
 
-import org.lineageos.audiofx.service.AudioFxService;
+import org.lluvia.lluviafx.service.lluviafxService;
 
 import lineageos.media.AudioSessionInfo;
 import lineageos.media.LineageAudioManager;
@@ -30,7 +30,7 @@ public class ServiceDispatcher extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        Intent service = new Intent(context.getApplicationContext(), AudioFxService.class);
+        Intent service = new Intent(context.getApplicationContext(), LLuviaFXService.class);
         String action = intent.getAction();
 
         // We can also get AUDIO_BECOMING_NOISY, which means a device change is
@@ -54,8 +54,8 @@ public class ServiceDispatcher extends BroadcastReceiver {
 
         service.setAction(action);
         context.startService(service);
-        if (AudioFxService.DEBUG) {
-            Log.d("AudioFX-Dispatcher", "Received " + action);
+        if (LLuviaFXService.DEBUG) {
+            Log.d("LLuviaFX-Dispatcher", "Received " + action);
         }
 
     }

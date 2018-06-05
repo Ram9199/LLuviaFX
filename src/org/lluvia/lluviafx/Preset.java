@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx;
+package org.lluvia.lluviafx;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import org.lineageos.audiofx.eq.EqUtils;
+import org.lluvia.lluviafx.eq.EqUtils;
 
 public class Preset implements Parcelable {
 

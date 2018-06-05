@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx.backends;
+package org.lluvia.lluviafx.backends;
 
 import android.media.AudioDeviceInfo;
 import android.util.Log;
@@ -24,7 +24,7 @@ import android.util.Log;
  */
 public abstract class EffectSet {
 
-    protected static final String TAG = "AudioFx-EffectSet";
+    protected static final String TAG = "LLuviaFX-EffectSet";
 
     protected final int mSessionId;
 

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx.fragment;
+package org.lluvia.lluviafx.fragment;
 
 import android.animation.Animator;
 import android.animation.ArgbEvaluator;
@@ -37,18 +37,18 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.lineageos.audiofx.Preset;
-import org.lineageos.audiofx.R;
-import org.lineageos.audiofx.activity.EqualizerManager;
-import org.lineageos.audiofx.activity.MasterConfigControl;
-import org.lineageos.audiofx.activity.StateCallbacks;
-import org.lineageos.audiofx.eq.EqContainerView;
-import org.lineageos.audiofx.preset.InfinitePagerAdapter;
-import org.lineageos.audiofx.preset.InfiniteViewPager;
-import org.lineageos.audiofx.preset.PresetPagerAdapter;
-import org.lineageos.audiofx.viewpagerindicator.CirclePageIndicator;
+import org.lluvia.lluviafx.Preset;
+import org.lluvia.lluviafx.R;
+import org.lluvia.lluviafx.activity.EqualizerManager;
+import org.lluvia.lluviafx.activity.MasterConfigControl;
+import org.lluvia.lluviafx.activity.StateCallbacks;
+import org.lluvia.lluviafx.eq.EqContainerView;
+import org.lluvia.lluviafx.preset.InfinitePagerAdapter;
+import org.lluvia.lluviafx.preset.InfiniteViewPager;
+import org.lluvia.lluviafx.preset.PresetPagerAdapter;
+import org.lluvia.lluviafx.viewpagerindicator.CirclePageIndicator;
 
-public class EqualizerFragment extends AudioFxBaseFragment
+public class EqualizerFragment extends LLuviaFXBaseFragment
         implements StateCallbacks.DeviceChangedCallback, StateCallbacks.EqUpdatedCallback {
 
     private static final String TAG = EqualizerFragment.class.getSimpleName();
@@ -398,8 +398,8 @@ public class EqualizerFragment extends AudioFxBaseFragment
             }
         };
 
-        final AudioFxFragment.ColorUpdateListener animatorUpdateListener
-                = new AudioFxFragment.ColorUpdateListener(this) {
+        final LLuviaFXFragment.ColorUpdateListener animatorUpdateListener
+                = new LLuviaFXFragment.ColorUpdateListener(this) {
             @Override
             public void onAnimationUpdate(ValueAnimator animator) {
                 super.onAnimationUpdate(animator);

@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx;
+package org.lluvia.lluviafx;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import org.lineageos.audiofx.eq.EqUtils;
+import org.lluvia.lluviafx.eq.EqUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,7 @@ public class Constants {
     public static final int EFFECT_TYPE_DTS = 3;
 
     // global settings
-    public static final String AUDIOFX_GLOBAL_FILE = "global";
+    public static final String LLUVIAFX_GLOBAL_FILE = "global";
 
     public static final String DEVICE_SPEAKER = "speaker";
     public static final String DEVICE_HEADSET = "headset";
@@ -41,14 +41,14 @@ public class Constants {
 
     public static final String SAVED_DEFAULTS = "saved_defaults";
 
-    public static final String AUDIOFX_GLOBAL_USE_DTS = "audiofx.global.use_dts";
-    public static final String AUDIOFX_GLOBAL_HAS_DTS = "audiofx.global.has_dts";
-    public static final String AUDIOFX_GLOBAL_ENABLE_DTS = "audiofx.global.dts.enable";
-    public static final String AUDIOFX_GLOBAL_HAS_MAXXAUDIO = "audiofx.global.hasmaxxaudio";
-    public static final String AUDIOFX_GLOBAL_HAS_BASSBOOST = "audiofx.global.hasbassboost";
-    public static final String AUDIOFX_GLOBAL_HAS_REVERB = "audiofx.global.hasreverb";
-    public static final String AUDIOFX_GLOBAL_HAS_VIRTUALIZER = "audiofx.global.hasvirtualizer";
-    public static final String AUDIOFX_GLOBAL_PREFS_VERSION_INT = "audiofx.global.prefs.version";
+    public static final String LLUVIAFX_GLOBAL_USE_DTS = "lluviafx.global.use_dts";
+    public static final String LLUVIAFX_GLOBAL_HAS_DTS = "lluviafx.global.has_dts";
+    public static final String LLUVIAFX_GLOBAL_ENABLE_DTS = "lluviafx.global.dts.enable";
+    public static final String LLUVIAFX_GLOBAL_HAS_MAXXAUDIO = "lluviafx.global.hasmaxxaudio";
+    public static final String LLUVIAFX_GLOBAL_HAS_BASSBOOST = "lluviafx.global.hasbassboost";
+    public static final String LLUVIAFX_GLOBAL_HAS_REVERB = "lluviafx.global.hasreverb";
+    public static final String LLUVIAFX_GLOBAL_HAS_VIRTUALIZER = "lluviafx.global.hasvirtualizer";
+    public static final String LLUVIAFX_GLOBAL_PREFS_VERSION_INT = "lluviafx.global.prefs.version";
 
     // per-device settings
     public static final boolean DEVICE_DEFAULT_GLOBAL_ENABLE = false;
@@ -56,18 +56,18 @@ public class Constants {
     /**
      * not really global enable, but really the device global enable...
      */
-    public static final String DEVICE_AUDIOFX_GLOBAL_ENABLE = "audiofx.global.enable";
-    public static final String DEVICE_AUDIOFX_BASS_ENABLE = "audiofx.bass.enable";
-    public static final String DEVICE_AUDIOFX_BASS_STRENGTH = "audiofx.bass.strength";
-    public static final String DEVICE_AUDIOFX_REVERB_PRESET = "audiofx.reverb.preset";
-    public static final String DEVICE_AUDIOFX_VIRTUALIZER_ENABLE = "audiofx.virtualizer.enable";
-    public static final String DEVICE_AUDIOFX_VIRTUALIZER_STRENGTH = "audiofx.virtualizer.strength";
-    public static final String DEVICE_AUDIOFX_TREBLE_ENABLE = "audiofx.treble.enable";
-    public static final String DEVICE_AUDIOFX_TREBLE_STRENGTH = "audiofx.treble.strength";
-    public static final String DEVICE_AUDIOFX_MAXXVOLUME_ENABLE = "audiofx.maxxvolume.enable";
+    public static final String DEVICE_LLUVIAFX_GLOBAL_ENABLE = "lluviafx.global.enable";
+    public static final String DEVICE_LLUVIAFX_BASS_ENABLE = "lluviafx.bass.enable";
+    public static final String DEVICE_LLUVIAFX_BASS_STRENGTH = "lluviafx.bass.strength";
+    public static final String DEVICE_LLUVIAFX_REVERB_PRESET = "lluviafx.reverb.preset";
+    public static final String DEVICE_LLUVIAFX_VIRTUALIZER_ENABLE = "lluviafx.virtualizer.enable";
+    public static final String DEVICE_LLUVIAFX_VIRTUALIZER_STRENGTH = "lluviafx.virtualizer.strength";
+    public static final String DEVICE_LLUVIAFX_TREBLE_ENABLE = "lluviafx.treble.enable";
+    public static final String DEVICE_LLUVIAFX_TREBLE_STRENGTH = "lluviafx.treble.strength";
+    public static final String DEVICE_LLUVIAFX_MAXXVOLUME_ENABLE = "lluviafx.maxxvolume.enable";
 
-    public static final String DEVICE_AUDIOFX_EQ_PRESET = "audiofx.eq.preset";
-    public static final String DEVICE_AUDIOFX_EQ_PRESET_LEVELS = "audiofx.eq.preset.levels";
+    public static final String DEVICE_LLUVIAFX_EQ_PRESET = "lluviafx.eq.preset";
+    public static final String DEVICE_LLUVIAFX_EQ_PRESET_LEVELS = "lluviafx.eq.preset.levels";
 
     // eq
     public static final String EQUALIZER_NUMBER_OF_PRESETS = "equalizer.number_of_presets";
@@ -87,7 +87,7 @@ public class Constants {
     }
 
     public static SharedPreferences getGlobalPrefs(Context context) {
-        return context.getSharedPreferences(AUDIOFX_GLOBAL_FILE, 0);
+        return context.getSharedPreferences(LLUVIAFX_GLOBAL_FILE, 0);
     }
 
     public static List<Preset> getCustomPresets(Context ctx, int bands) {

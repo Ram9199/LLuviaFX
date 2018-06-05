@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx.fragment;
+package org.lluvia.lluviafx.fragment;
 
 import android.animation.Animator;
 import android.animation.ArgbEvaluator;
@@ -38,21 +38,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import org.lineageos.audiofx.Compatibility;
-import org.lineageos.audiofx.Constants;
-import org.lineageos.audiofx.R;
-import org.lineageos.audiofx.activity.ActivityMusic;
-import org.lineageos.audiofx.activity.EqualizerManager;
-import org.lineageos.audiofx.activity.MasterConfigControl;
-import org.lineageos.audiofx.activity.StateCallbacks;
-import org.lineageos.audiofx.widget.InterceptableLinearLayout;
+import org.lluvia.lluviafx.Compatibility;
+import org.lluvia.lluviafx.Constants;
+import org.lluvia.lluviafx.R;
+import org.lluvia.lluviafx.activity.ActivityMusic;
+import org.lluvia.lluviafx.activity.EqualizerManager;
+import org.lluvia.lluviafx.activity.MasterConfigControl;
+import org.lluvia.lluviafx.activity.StateCallbacks;
+import org.lluvia.lluviafx.widget.InterceptableLinearLayout;
 
 import java.util.List;
 import java.util.Map;
 
-public class AudioFxFragment extends Fragment implements StateCallbacks.DeviceChangedCallback {
+public class LLuviaFXFragment extends Fragment implements StateCallbacks.DeviceChangedCallback {
 
-    private static final String TAG = AudioFxFragment.class.getSimpleName();
+    private static final String TAG = LLuviaFXFragment.class.getSimpleName();
     private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
 
     public static final String TAG_EQUALIZER = "equalizer";
@@ -172,12 +172,12 @@ public class AudioFxFragment extends Fragment implements StateCallbacks.DeviceCh
     }
 
     private void promptIfNotDefault() {
-        final String audioFxPackageName = getActivity().getPackageName();
+        final String lluviafxPackageName = getActivity().getPackageName();
 
         final SharedPreferences musicFxPrefs = Constants.getMusicFxPrefs(getActivity());
         final String defaultPackage = musicFxPrefs.getString(Constants.MUSICFX_DEFAULT_PACKAGE_KEY,
-                audioFxPackageName);
-        final boolean notDefault = !defaultPackage.equals(audioFxPackageName);
+                lluviafxPackageName);
+        final boolean notDefault = !defaultPackage.equals(lluviafxPackageName);
 
         if (notDefault) {
             new AlertDialog.Builder(getActivity())
@@ -195,7 +195,7 @@ public class AudioFxFragment extends Fragment implements StateCallbacks.DeviceCh
                                 public void onClick(DialogInterface dialog, int which) {
                                     Intent updateIntent = new Intent(getActivity(),
                                             Compatibility.Service.class);
-                                    updateIntent.putExtra("defPackage", audioFxPackageName);
+                                    updateIntent.putExtra("defPackage", lluviafxPackageName);
                                     updateIntent.putExtra("defName", ActivityMusic.class.getName());
                                     getActivity().startService(updateIntent);
                                     dialog.dismiss();
@@ -365,8 +365,8 @@ public class AudioFxFragment extends Fragment implements StateCallbacks.DeviceCh
         }
 
         View root = inflater.inflate(mConfig.hasMaxxAudio()
-                ? R.layout.fragment_audiofx_maxxaudio
-                : R.layout.fragment_audiofx, container, false);
+                ? R.layout.fragment_lluviafx_maxxaudio
+                : R.layout.fragment_lluviafx, container, false);
 
         final FragmentTransaction fragmentTransaction = getChildFragmentManager()
                 .beginTransaction();
@@ -491,9 +491,9 @@ public class AudioFxFragment extends Fragment implements StateCallbacks.DeviceCh
 
     public static class ColorUpdateListener implements ValueAnimator.AnimatorUpdateListener {
 
-        final AudioFxBaseFragment mFrag;
+        final LLuviaFXBaseFragment mFrag;
 
-        public ColorUpdateListener(AudioFxBaseFragment frag) {
+        public ColorUpdateListener(LLuviaFXBaseFragment frag) {
             this.mFrag = frag;
         }
 

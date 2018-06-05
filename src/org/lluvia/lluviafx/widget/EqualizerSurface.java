@@ -17,7 +17,7 @@
  * - Modified extensively by cyanogen for multi-band support
  */
 
-package org.lineageos.audiofx.widget;
+package org.lluvia.lluviafx.widget;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
@@ -38,7 +38,7 @@ import android.view.SurfaceView;
 import android.view.View;
 
 import android.view.animation.DecelerateInterpolator;
-import org.lineageos.audiofx.R;
+import org.lluvia.lluviafx.R;
 
 import java.util.Arrays;
 

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx.activity;
+package org.lluvia.lluviafx.activity;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -28,21 +28,21 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-import org.lineageos.audiofx.AudioFxApplication;
-import org.lineageos.audiofx.Constants;
-import org.lineageos.audiofx.R;
-import org.lineageos.audiofx.fragment.AudioFxFragment;
-import org.lineageos.audiofx.knobs.KnobCommander;
-import org.lineageos.audiofx.service.AudioFxService;
-import org.lineageos.audiofx.service.DevicePreferenceManager;
+import org.lluvia.lluviafx.LLuviaFXApplication;
+import org.lluvia.lluviafx.Constants;
+import org.lluvia.lluviafx.R;
+import org.lluvia.lluviafx.fragment.LLuviaFXFragment;
+import org.lluvia.lluviafx.knobs.KnobCommander;
+import org.lluvia.lluviafx.service.LLuviaFXService;
+import org.lluvia.lluviafx.service.DevicePreferenceManager;
 
 public class ActivityMusic extends Activity {
 
     private static final String TAG = ActivityMusic.class.getSimpleName();
     private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
 
-    public static final String TAG_AUDIOFX = "audiofx";
-    public static final String EXTRA_CALLING_PACKAGE = "audiofx::extra_calling_package";
+    public static final String TAG_LLUVIAFX = "lluviafx";
+    public static final String EXTRA_CALLING_PACKAGE = "LLuviaFX::extra_calling_package";
 
     private Switch mCurrentDeviceToggle;
     MasterConfigControl mConfig;
@@ -94,7 +94,7 @@ public class ActivityMusic extends Activity {
                 }
             };
             globalPrefs.registerOnSharedPreferenceChangeListener(mServiceReadyObserver);
-            startService(new Intent(ActivityMusic.this, AudioFxService.class));
+            startService(new Intent(ActivityMusic.this, LLuviaFXService.class));
             // TODO add loading fragment if service initialization takes too long
         } else {
             init(savedInstanceState);
@@ -104,7 +104,7 @@ public class ActivityMusic extends Activity {
     private boolean defaultsSetup() {
         final int targetVersion = DevicePreferenceManager.CURRENT_PREFS_INT_VERSION;
         final SharedPreferences prefs = Constants.getGlobalPrefs(this);
-        final int currentVersion = prefs.getInt(Constants.AUDIOFX_GLOBAL_PREFS_VERSION_INT, 0);
+        final int currentVersion = prefs.getInt(Constants.LLUVIAFX_GLOBAL_PREFS_VERSION_INT, 0);
         final boolean defaultsSaved = prefs.getBoolean(Constants.SAVED_DEFAULTS, false);
         return defaultsSaved && currentVersion >= targetVersion;
     }
@@ -146,7 +146,7 @@ public class ActivityMusic extends Activity {
         if (savedInstanceState == null && findViewById(R.id.main_fragment) != null) {
             getFragmentManager()
                     .beginTransaction()
-                    .add(R.id.main_fragment, new AudioFxFragment(), TAG_AUDIOFX)
+                    .add(R.id.main_fragment, new LLuviaFXFragment(), TAG_LLuviaFX)
                     .commit();
         }
         applyOemDecor();

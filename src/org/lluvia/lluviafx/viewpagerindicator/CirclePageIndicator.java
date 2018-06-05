@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx.viewpagerindicator;
+package org.lluvia.lluviafx.viewpagerindicator;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -30,7 +30,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
-import org.lineageos.audiofx.R;
+import org.lluvia.lluviafx.R;
 
 import static android.graphics.Paint.ANTI_ALIAS_FLAG;
 import static android.widget.LinearLayout.HORIZONTAL;

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx.fragment;
+package org.lluvia.lluviafx.fragment;
 
 import android.annotation.Nullable;
 import android.content.res.ColorStateList;
@@ -28,12 +28,12 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
-import org.lineageos.audiofx.R;
-import org.lineageos.audiofx.activity.MasterConfigControl;
-import org.lineageos.audiofx.knobs.KnobCommander;
-import org.lineageos.audiofx.knobs.KnobContainer;
+import org.lluvia.lluviafx.R;
+import org.lluvia.lluviafx.activity.MasterConfigControl;
+import org.lluvia.lluviafx.knobs.KnobCommander;
+import org.lluvia.lluviafx.knobs.KnobContainer;
 
-public class ControlsFragment extends AudioFxBaseFragment {
+public class ControlsFragment extends LLuviaFXBaseFragment {
 
     private static final String TAG = ControlsFragment.class.getSimpleName();
     private static final boolean DEBUG = false;

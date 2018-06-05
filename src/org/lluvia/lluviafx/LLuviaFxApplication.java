@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx;
+package org.lluvia.lluviafx;
 
 import android.app.Application;
 import android.util.Log;
 
-public class AudioFxApplication extends Application {
+public class LLuviaFXApplication extends Application {
 
-    private static final String TAG = AudioFxApplication.class.getSimpleName();
+    private static final String TAG = LLuviaFXApplication.class.getSimpleName();
     private static final boolean DEBUG = false;
 
     @Override

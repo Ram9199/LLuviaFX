@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx.service;
+package org.lluvia.lluviafx.service;
 
 import android.app.Service;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
-import android.media.audiofx.AudioEffect;
+import android.media.lluviafx.AudioEffect;
 import android.os.Binder;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -28,9 +28,9 @@ import android.os.IBinder;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import org.lineageos.audiofx.R;
-import org.lineageos.audiofx.activity.MasterConfigControl;
-import org.lineageos.audiofx.backends.EffectSet;
+import org.lluvia.lluviafx.R;
+import org.lluvia.lluviafx.activity.MasterConfigControl;
+import org.lluvia.lluviafx.backends.EffectSet;
 
 import java.lang.ref.WeakReference;
 import java.util.Locale;
@@ -39,21 +39,21 @@ import lineageos.media.AudioSessionInfo;
 import lineageos.media.LineageAudioManager;
 
 /**
- * This service is responsible for applying all requested effects from the AudioFX UI.
+ * This service is responsible for applying all requested effects from the LLuviaFX UI.
  *
- * Since the AudioFX UI allows for different configurations based on the current output device,
+ * Since the LLuviaFX UI allows for different configurations based on the current output device,
  * the service is also responsible for applying the effects properly based on user configuration,
  * and the current device output state.
  */
-public class AudioFxService extends Service
+public class LLuviaFXService extends Service
         implements AudioOutputChangeListener.AudioOutputChangedCallback {
 
-    static final String TAG = AudioFxService.class.getSimpleName();
+    static final String TAG = LLuviaFXService.class.getSimpleName();
 
     public static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
 
     public static final String ACTION_DEVICE_OUTPUT_CHANGED
-            = "org.lineageos.audiofx.ACTION_DEVICE_OUTPUT_CHANGED";
+            = "org.lluvia.lluviafx.ACTION_DEVICE_OUTPUT_CHANGED";
 
     public static final String EXTRA_DEVICE = "device";
 
@@ -80,15 +80,15 @@ public class AudioFxService extends Service
 
     public static class LocalBinder extends Binder {
 
-        final WeakReference<AudioFxService> mService;
+        final WeakReference<LLuviaFXService> mService;
 
-        public LocalBinder(AudioFxService service) {// added a constructor for Stub here
-            mService = new WeakReference<AudioFxService>(service);
+        public LocalBinder(LLuviaFXService service) {// added a constructor for Stub here
+            mService = new WeakReference<LLuviaFXService>(service);
         }
 
         private boolean checkService() {
             if (mService.get() == null) {
-                Log.e("AudioFx-LocalBinder", "Service was null!");
+                Log.e("LLuviaFX-LocalBinder", "Service was null!");
             }
             return mService.get() != null;
         }
@@ -118,7 +118,7 @@ public class AudioFxService extends Service
         super.onCreate();
         if (DEBUG) Log.i(TAG, "Starting service.");
 
-        HandlerThread handlerThread = new HandlerThread("AudioFx-Backend");
+        HandlerThread handlerThread = new HandlerThread("LLuviaFX-Backend");
         handlerThread.start();
         mHandler = new Handler(handlerThread.getLooper());
 

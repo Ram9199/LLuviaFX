@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package org.lineageos.audiofx.activity;
+package org.lluvia.lluviafx.activity;
 
 import com.android.internal.app.AlertActivity;
 import com.android.internal.app.AlertController;
 import com.android.internal.app.AlertController.AlertParams.OnPrepareListViewListener;
-import org.lineageos.audiofx.Compatibility;
-import org.lineageos.audiofx.Compatibility.Service;
+import org.lluvia.lluviafx.Compatibility;
+import org.lluvia.lluviafx.Compatibility.Service;
 
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -30,10 +30,10 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.database.MatrixCursor;
-import android.media.audiofx.AudioEffect;
+import android.media.lluviafx.AudioEffect;
 import android.os.Bundle;
 import android.widget.ListView;
-import org.lineageos.audiofx.R;
+import org.lluvia.lluviafx.R;
 
 import java.util.List;
 

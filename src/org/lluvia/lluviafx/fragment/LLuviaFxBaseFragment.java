@@ -13,26 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx.fragment;
+package org.lluvia.lluviafx.fragment;
 
 import android.animation.Animator;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.widget.CompoundButton;
-import org.lineageos.audiofx.activity.ActivityMusic;
-import org.lineageos.audiofx.activity.MasterConfigControl;
+import org.lluvia.lluviafx.activity.ActivityMusic;
+import org.lluvia.lluviafx.activity.MasterConfigControl;
 
-public class AudioFxBaseFragment extends Fragment {
+public class LLuviaFXBaseFragment extends Fragment {
 
     MasterConfigControl mConfig;
 
-    AudioFxFragment mFrag;
+    LLuviaFXFragment mFrag;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mFrag = (AudioFxFragment) getParentFragment();
+        mFrag = (LLuviaFXFragment) getParentFragment();
 
         mConfig = MasterConfigControl.getInstance(getActivity());
     }
@@ -46,7 +46,7 @@ public class AudioFxBaseFragment extends Fragment {
     }
 
     public void animateBackgroundColorTo(Integer colorTo, Animator.AnimatorListener listener,
-                                         AudioFxFragment.ColorUpdateListener updateListener) {
+                                         LLuviaFXFragment.ColorUpdateListener updateListener) {
         if (mFrag != null) {
             mFrag.animateBackgroundColorTo(colorTo, listener, updateListener);
         }

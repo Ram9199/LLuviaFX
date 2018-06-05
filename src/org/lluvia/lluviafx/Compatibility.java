@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.lineageos.audiofx;
+package org.lluvia.lluviafx;
 
 import android.app.Activity;
 import android.app.IntentService;
@@ -26,11 +26,11 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.media.audiofx.AudioEffect;
+import android.media.lluviafx.AudioEffect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import org.lineageos.audiofx.activity.ActivityMusic;
+import org.lluvia.lluviafx.activity.ActivityMusic;
 
 import java.util.List;
 
@@ -46,8 +46,8 @@ import java.util.List;
  */
 public class Compatibility {
 
-    private final static String TAG = "AudioFXCompat";
-    // run "setprop log.tag.AudioFXCompat DEBUG" to turn on logging
+    private final static String TAG = "LLuviaFXCompat";
+    // run "setprop log.tag.LLuviaFXCompat DEBUG" to turn on logging
     private final static boolean LOG = Log.isLoggable(TAG, Log.DEBUG);
 
 

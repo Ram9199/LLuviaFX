@@ -1,6 +1,6 @@
-package org.lineageos.audiofx.eq;
+package org.lluvia.lluviafx.eq;
 
-import org.lineageos.audiofx.Preset;
+import org.lluvia.lluviafx.Preset;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

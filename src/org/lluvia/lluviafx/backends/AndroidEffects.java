@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx.backends;
+package org.lluvia.lluviafx.backends;
 
 import android.media.AudioDeviceInfo;
-import android.media.audiofx.AudioEffect;
-import android.media.audiofx.BassBoost;
-import android.media.audiofx.PresetReverb;
-import android.media.audiofx.Virtualizer;
+import android.media.lluviafx.AudioEffect;
+import android.media.lluviafx.BassBoost;
+import android.media.lluviafx.PresetReverb;
+import android.media.lluviafx.Virtualizer;
 import android.util.Log;
 
-import org.lineageos.audiofx.Constants;
+import org.lluvia.lluviafx.Constants;
 
 /**
  * EffectSet which comprises standard Android effects

@@ -1,6 +1,6 @@
-package org.lineageos.audiofx.backends;
+package org.lluvia.lluviafx.backends;
 
-import org.lineageos.audiofx.Constants;
+import org.lluvia.lluviafx.Constants;
 
 import android.content.Context;
 import android.media.AudioDeviceInfo;

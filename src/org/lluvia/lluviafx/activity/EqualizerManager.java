@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx.activity;
+package org.lluvia.lluviafx.activity;
 
 import android.content.Context;
 import android.os.Handler;
@@ -21,11 +21,11 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.CompoundButton;
 
-import org.lineageos.audiofx.Constants;
-import org.lineageos.audiofx.Preset;
-import org.lineageos.audiofx.R;
-import org.lineageos.audiofx.eq.EqUtils;
-import org.lineageos.audiofx.service.AudioFxService;
+import org.lluvia.lluviafx.Constants;
+import org.lluvia.lluviafx.Preset;
+import org.lluvia.lluviafx.R;
+import org.lluvia.lluviafx.eq.EqUtils;
+import org.lluvia.lluviafx.service.LLuviaFXService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -140,7 +140,7 @@ public class EqualizerManager {
         mEqPresets.addAll(Constants.getCustomPresets(mContext, mNumBands));
 
         // setup default preset for speaker
-        mCurrentPreset = Integer.parseInt(getPref(Constants.DEVICE_AUDIOFX_EQ_PRESET, "0"));
+        mCurrentPreset = Integer.parseInt(getPref(Constants.DEVICE_LLUVIAFX_EQ_PRESET, "0"));
         if (mCurrentPreset > mEqPresets.size() - 1) {
             mCurrentPreset = 0;
         }
@@ -212,7 +212,7 @@ public class EqualizerManager {
 
     void onPreDeviceChanged() {
         // need to update the current preset based on the device here.
-        int newPreset = Integer.parseInt(getPref(Constants.DEVICE_AUDIOFX_EQ_PRESET, "0"));
+        int newPreset = Integer.parseInt(getPref(Constants.DEVICE_LLUVIAFX_EQ_PRESET, "0"));
         if (newPreset > mEqPresets.size() - 1) {
             newPreset = 0;
         }
@@ -327,9 +327,9 @@ public class EqualizerManager {
                 }
                 // needs to be updated immediately here for the service.
                 final String levels = EqUtils.floatLevelsToString(preset.getLevels());
-                setPref(Constants.DEVICE_AUDIOFX_EQ_PRESET_LEVELS, levels);
+                setPref(Constants.DEVICE_LLUVIAFX_EQ_PRESET_LEVELS, levels);
 
-                mConfig.updateService(AudioFxService.EQ_CHANGED);
+                mConfig.updateService(LLUVIAFXService.EQ_CHANGED);
             }
             savePresetsDelayed();
         }
@@ -349,7 +349,7 @@ public class EqualizerManager {
         mConfig.getCallbacks().notifyPresetChanged(newPresetIndex);
 
         // persist
-        setPref(Constants.DEVICE_AUDIOFX_EQ_PRESET, String.valueOf(newPresetIndex));
+        setPref(Constants.DEVICE_LLUVIAFX_EQ_PRESET, String.valueOf(newPresetIndex));
 
         // update mGlobalLevels
         float[] newlevels = getPresetLevels(newPresetIndex);
@@ -357,10 +357,10 @@ public class EqualizerManager {
             setLevel(i, newlevels[i], true);
         }
 
-        setPref(Constants.DEVICE_AUDIOFX_EQ_PRESET_LEVELS, EqUtils.floatLevelsToString(newlevels));
+        setPref(Constants.DEVICE_LLUVIAFX_EQ_PRESET_LEVELS, EqUtils.floatLevelsToString(newlevels));
 
         if (updateBackend) {
-            mConfig.updateService(AudioFxService.EQ_CHANGED);
+            mConfig.updateService(LLUVIAFXService.EQ_CHANGED);
         }
     }
 

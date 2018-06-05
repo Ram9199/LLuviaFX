@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lineageos.audiofx.service;
+package org.lluvia.lluviafx.service;
 
 import static android.media.AudioDeviceInfo.convertDeviceTypeToInternalDevice;
 
@@ -30,7 +30,7 @@ import java.util.List;
 
 public class AudioOutputChangeListener extends AudioDeviceCallback {
 
-    private static final String TAG = "AudioFx-" + AudioOutputChangeListener.class.getSimpleName();
+    private static final String TAG = "LLuviaFX-" + AudioOutputChangeListener.class.getSimpleName();
 
     private boolean mInitial = true;
 

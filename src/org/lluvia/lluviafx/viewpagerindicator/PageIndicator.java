@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.lineageos.audiofx.viewpagerindicator;
+package org.lluvia.lluviafx.viewpagerindicator;
 
 import android.support.v4.view.ViewPager;
 
